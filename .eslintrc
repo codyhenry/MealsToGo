@@ -1,0 +1,13 @@
+{
+  "plugins" : ["prettier","react",
+  "react-native"],
+  "extends":["plugin:prettier/recommended"],
+  "parserOptions": {
+    "ecmaFeatures": {
+        "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+}
+  
+}
