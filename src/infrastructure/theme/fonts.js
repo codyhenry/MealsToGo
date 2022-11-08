@@ -1,3 +1,4 @@
+//install fonts using expo google fonts and load them in App.js
 export const fonts = {
   body: "Oswald_400Regular",
   heading: "Lato_400Regular",
