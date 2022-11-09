@@ -1,51 +1,18 @@
-import styled from "styled-components/native";
-import { Image } from "react-native";
-import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 
+import { CustomText } from "../../../components/typography/text.component";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
 
-const RestaurantCard = styled(Card)`
-  background-color: ${(props) => props.theme.colors.bg.primary};
-`;
-const RestaurantCardCover = styled(Card.Cover)`
-  padding: ${(props) => props.theme.spacing.md};
-  background-color: ${(props) => props.theme.colors.bg.primary};
-`;
-
-const Info = styled.View`
-  padding: ${(props) => props.theme.spacing.md};
-`;
-
-const RestaurantTitle = styled.Text`
-  font-family: ${(props) => props.theme.fonts.heading};
-  font-size: ${(props) => props.theme.fontSizes.body};
-  color: ${(props) => props.theme.colors.ui.primary};
-`;
-
-const Section = styled.View`
-  flex-direction: row;
-  align-items: center;
-`;
-
-const SectionEnd = styled.View`
-  flex: 1;
-  flex-direction: row;
-  justify-content: flex-end;
-`;
-
-const Rating = styled.View`
-  flex-direction: row;
-`;
-
-const Address = styled.Text`
-  font-family: ${(props) => props.theme.fonts.body};
-`;
-
-const ClosedMessage = styled(Address)`
-  color: ${(props) => props.theme.colors.ui.error};
-`;
+import {
+  RestaurantCard,
+  RestaurantCardCover,
+  Info,
+  Section,
+  SectionEnd,
+  Rating,
+  Icon,
+} from "./restaurant-info-card.styles";
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
@@ -55,8 +22,8 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
       "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
     ],
     address = "100 some random street",
-    isOpen = true,
-    isClosedTemporarily = false,
+    isOpen = false,
+    isClosedTemporarily = true,
     rating = 4,
   } = restaurant;
 
@@ -72,20 +39,20 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
           ))}
         </Rating>
         <Section>
-          <RestaurantTitle>{name} </RestaurantTitle>
+          <CustomText variant="label">{name} </CustomText>
           <SectionEnd>
-            <Image style={{ width: 20, height: 20 }} source={{ uri: icon }} />
+            <Icon source={{ uri: icon }} />
           </SectionEnd>
         </Section>
 
         <Section>
-          <Address>{address}</Address>
+          <CustomText>{address}</CustomText>
           <SectionEnd>
             {isOpen && !isClosedTemporarily && (
               <SvgXml xml={open} width={20} height={20} />
             )}
             {isClosedTemporarily && !isOpen && (
-              <ClosedMessage>CLOSED TEMPORARILY</ClosedMessage>
+              <CustomText variant="error">CLOSED TEMPORARILY</CustomText>
             )}
           </SectionEnd>
         </Section>
