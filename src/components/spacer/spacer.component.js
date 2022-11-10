@@ -10,7 +10,7 @@ const sideVariant = {
 //translate input values into spacing.js indices
 const getVariant = (side, size, theme) => {
   const marginSize = theme.spacing[size];
-  `${sideVariant[side]}:${marginSize}`;
+  return `${sideVariant[side]}:${marginSize}`;
 };
 
 //If there is an Android bug, change this to not declare the view and instantiate it at same time
