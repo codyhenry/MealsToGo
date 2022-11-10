@@ -1,43 +1,31 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
+import { ThemeProvider } from "styled-components/native";
 import {
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  Platform,
-} from "react-native";
-import { Searchbar } from "react-native-paper";
+  useFonts as useOswald,
+  Oswald_400Regular,
+} from "@expo-google-fonts/oswald";
+import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 
-const isAndroid = Platform.OS === "android";
+import { theme } from "./src/infrastructure/theme";
+import { RestaurantsScreen } from "./src/features/restaurants/screens/restuarants.screen";
+
 export default function App() {
+  const [oswaldLoaded] = useOswald({
+    Oswald_400Regular,
+  });
+  const [latoLoaded] = useLato({
+    Lato_400Regular,
+  });
+
+  if (!oswaldLoaded || !latoLoaded) {
+    return null;
+  }
   return (
     <>
-      <ExpoStatusBar style="auto" />
-      <SafeAreaView style={styles.container}>
-        <View style={styles.search}>
-          <Searchbar />
-        </View>
-        <View style={styles.list}>
-          <Text>List</Text>
-        </View>
-      </SafeAreaView>
+      <ThemeProvider theme={theme}>
+        <ExpoStatusBar style="auto" />
+        <RestaurantsScreen />
+      </ThemeProvider>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight,
-  },
-  search: {
-    padding: 16,
-    backgroundColor: "green",
-  },
-  list: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: "blue",
-  },
-});

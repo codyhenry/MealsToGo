@@ -1,0 +1,57 @@
+import styled from "styled-components/native";
+import { SafeAreaView, StatusBar, FlatList } from "react-native";
+import { Searchbar } from "react-native-paper";
+
+import { Spacer } from "../../../components/spacer/spacer.component";
+import { RestaurantInfoCard } from "../components/restuarant-info-card.component";
+
+//Any styled componenet automatically gets "theme" prop passed to it
+const SafeArea = styled(SafeAreaView)`
+  ${StatusBar.currentHeight && `margin-top:${StatusBar.currentHeight}px`};
+`;
+
+const SearchContainer = styled.View`
+  padding: ${(props) => props.theme.spacing.sm};
+`;
+
+const RestaurantList = styled(FlatList).attrs({
+  contentContainerStyle: {
+    padding: 16,
+  },
+})``;
+
+export const RestaurantsScreen = () => (
+  <SafeArea>
+    <SearchContainer>
+      <Searchbar />
+    </SearchContainer>
+    <RestaurantList
+      data={[
+        { name: 1 },
+        { name: 2 },
+        { name: 3 },
+        { name: 4 },
+        { name: 5 },
+        { name: 6 },
+        { name: 7 },
+        { name: 8 },
+        { name: 9 },
+        { name: 10 },
+        { name: 11 },
+        { name: 12 },
+        { name: 13 },
+        { name: 14 },
+      ]}
+      renderItem={() => (
+        <>
+          <Spacer side="bottom" size="md">
+            <RestaurantInfoCard />
+          </Spacer>
+        </>
+      )}
+      //ListFooterComponent={<View style={{ marginBottom: 32 }}></View>}
+      ListFooterComponent={<Spacer side="bottom" size="xl" />}
+      keyExtractor={(item) => item.name}
+    />
+  </SafeArea>
+);
