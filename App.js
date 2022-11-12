@@ -12,7 +12,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { theme } from "./src/infrastructure/theme";
 import { RestaurantsScreen } from "./src/features/restaurants/screens/restuarants.screen";
 
+//temporary imports
 import { Text } from "react-native";
+import { restaurantsRequest } from "./src/services/restaurants/restaurants.service";
 
 const Tab = createBottomTabNavigator();
 
