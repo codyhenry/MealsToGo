@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { FlatList } from "react-native";
 import { Searchbar } from "react-native-paper";
@@ -5,6 +6,8 @@ import { Searchbar } from "react-native-paper";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { RestaurantInfoCard } from "../components/restuarant-info-card.component";
+
+import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 
 const SearchContainer = styled.View`
   padding: ${(props) => props.theme.spacing.sm};
@@ -16,37 +19,27 @@ const RestaurantList = styled(FlatList).attrs({
   },
 })``;
 
-export const RestaurantsScreen = () => (
-  <SafeArea>
-    <SearchContainer>
-      <Searchbar />
-    </SearchContainer>
-    <RestaurantList
-      data={[
-        { name: 1 },
-        { name: 2 },
-        { name: 3 },
-        { name: 4 },
-        { name: 5 },
-        { name: 6 },
-        { name: 7 },
-        { name: 8 },
-        { name: 9 },
-        { name: 10 },
-        { name: 11 },
-        { name: 12 },
-        { name: 13 },
-        { name: 14 },
-      ]}
-      renderItem={() => (
-        <>
-          <Spacer side="bottom" size="md">
-            <RestaurantInfoCard />
-          </Spacer>
-        </>
-      )}
-      ListFooterComponent={<Spacer side="bottom" size="xxl" />}
-      keyExtractor={(item) => item.name}
-    />
-  </SafeArea>
-);
+export const RestaurantsScreen = () => {
+  //const restaurantContext = useContext(RestaurantsContext);
+  //destructure restaurantContext parameters passed in RestaurantContextProvider
+  const { restaurants, isLoading, error } = useContext(RestaurantsContext);
+  return (
+    <SafeArea>
+      <SearchContainer>
+        <Searchbar />
+      </SearchContainer>
+      <RestaurantList
+        data={restaurants}
+        renderItem={({ item }) => (
+          <>
+            <Spacer side="bottom" size="md">
+              <RestaurantInfoCard restaurant={item} />
+            </Spacer>
+          </>
+        )}
+        ListFooterComponent={<Spacer side="bottom" size="xxl" />}
+        keyExtractor={(item) => item.name}
+      />
+    </SafeArea>
+  );
+};
