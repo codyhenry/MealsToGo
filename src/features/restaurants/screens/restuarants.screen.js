@@ -6,6 +6,7 @@ import { Searchbar } from "react-native-paper";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { RestaurantInfoCard } from "../components/restuarant-info-card.component";
+import { LoadingComponent } from "../../../components/loading/activity-indicator.component";
 
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 
@@ -28,18 +29,22 @@ export const RestaurantsScreen = () => {
       <SearchContainer>
         <Searchbar />
       </SearchContainer>
-      <RestaurantList
-        data={restaurants}
-        renderItem={({ item }) => (
-          <>
-            <Spacer side="bottom" size="md">
-              <RestaurantInfoCard restaurant={item} />
-            </Spacer>
-          </>
-        )}
-        ListFooterComponent={<Spacer side="bottom" size="xxl" />}
-        keyExtractor={(item) => item.name}
-      />
+      {isLoading ? (
+        <LoadingComponent />
+      ) : (
+        <RestaurantList
+          data={restaurants}
+          renderItem={({ item }) => (
+            <>
+              <Spacer side="bottom" size="md">
+                <RestaurantInfoCard restaurant={item} />
+              </Spacer>
+            </>
+          )}
+          ListFooterComponent={<Spacer side="bottom" size="xxl" />}
+          keyExtractor={(item) => item.name}
+        />
+      )}
     </SafeArea>
   );
 };
