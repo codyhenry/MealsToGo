@@ -27,7 +27,6 @@ const TAB_ICON = {
 //if header is disabled, wrap these in a safe-area.component - needs import
 const SettingsScreen = () => <Text>Settings</Text>;
 const MapScreen = () => <Text>Map</Text>;
-
 export default function App() {
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
