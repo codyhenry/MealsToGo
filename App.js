@@ -12,6 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { theme } from "./src/infrastructure/theme";
 import { RestaurantsScreen } from "./src/features/restaurants/screens/restuarants.screen";
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
+import { LocationContextProvider } from "./src/services/location/location.context";
 
 //temporary imports
 import { Text } from "react-native";
@@ -42,29 +43,33 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantsContextProvider>
-          <NavigationContainer>
-            <Tab.Navigator
-              screenOptions={({ route }) => ({
-                tabBarIcon: ({ focused, color, size }) => {
-                  let iconName = TAB_ICON[route.name][focused];
-                  //You can return any component that you like here!
-                  return <Ionicons name={iconName} size={size} color={color} />;
-                },
-                tabBarActiveTintColor: theme.colors.brand.secondary,
-                tabBarInactiveTintColor: theme.colors.ui.secondary,
-              })}
-            >
-              <Tab.Screen
-                name="Restaurants"
-                component={RestaurantsScreen}
-                options={{ headerShown: false }}
-              />
-              <Tab.Screen name="Map" component={MapScreen} />
-              <Tab.Screen name="Settings" component={SettingsScreen} />
-            </Tab.Navigator>
-          </NavigationContainer>
-        </RestaurantsContextProvider>
+        <LocationContextProvider>
+          <RestaurantsContextProvider>
+            <NavigationContainer>
+              <Tab.Navigator
+                screenOptions={({ route }) => ({
+                  tabBarIcon: ({ focused, color, size }) => {
+                    let iconName = TAB_ICON[route.name][focused];
+                    //You can return any component that you like here!
+                    return (
+                      <Ionicons name={iconName} size={size} color={color} />
+                    );
+                  },
+                  tabBarActiveTintColor: theme.colors.brand.secondary,
+                  tabBarInactiveTintColor: theme.colors.ui.secondary,
+                })}
+              >
+                <Tab.Screen
+                  name="Restaurants"
+                  component={RestaurantsScreen}
+                  options={{ headerShown: false }}
+                />
+                <Tab.Screen name="Map" component={MapScreen} />
+                <Tab.Screen name="Settings" component={SettingsScreen} />
+              </Tab.Navigator>
+            </NavigationContainer>
+          </RestaurantsContextProvider>
+        </LocationContextProvider>
         <ExpoStatusBar style="auto" />
       </ThemeProvider>
     </>
