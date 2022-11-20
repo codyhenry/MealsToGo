@@ -13,7 +13,7 @@ export const restaurantsRequest = (location) => {
 export const restaurantsTransform = ({ results = [] }) => {
   //let closedBusiness = [];
   const mappedResults = results.map((restaurant) => {
-    restaurant.photos = restaurant.photos.map((photo) => {
+    restaurant.photos = restaurant.photos.map(() => {
       return mockImages[Math.ceil(Math.random() * (mockImages.length - 1))];
     });
     return {
