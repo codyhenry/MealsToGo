@@ -31,13 +31,13 @@ export const AppNavigator = () => (
         },
         tabBarActiveTintColor: theme.colors.brand.secondary,
         tabBarInactiveTintColor: theme.colors.ui.secondary,
+        headerShown: false,
       })}
     >
       <Tab.Screen
         //The tabs will contain screens for stack navigation components
         name="Restaurants"
         component={RestaurantsNavigator}
-        options={{ headerShown: false }}
       />
       <Tab.Screen name="Map" component={MapScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />

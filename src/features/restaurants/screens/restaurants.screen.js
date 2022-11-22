@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components/native";
-import { FlatList } from "react-native";
+import { FlatList, Pressable } from "react-native";
 
 import { Search } from "../components/search.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
@@ -15,8 +15,8 @@ const RestaurantList = styled(FlatList).attrs({
     padding: 16,
   },
 })``;
-
-export const RestaurantsScreen = () => {
+//navigate prop comes from stack navigator
+export const RestaurantsScreen = ({ navigation }) => {
   //const restaurantContext = useContext(RestaurantsContext);
   //destructure restaurantContext parameters passed in RestaurantContextProvider
   const { restaurants, isLoading, error } = useContext(RestaurantsContext);
@@ -30,9 +30,16 @@ export const RestaurantsScreen = () => {
           data={restaurants}
           renderItem={({ item }) => (
             <>
-              <Spacer side="bottom" size="md">
-                <RestaurantInfoCard restaurant={item} />
-              </Spacer>
+              <Pressable
+                onPress={() =>
+                  navigation.navigate("RestaurantDetail", { restaurant: item })
+                }
+                style={({ pressed }) => [{ opacity: pressed ? 0.5 : 1 }]}
+              >
+                <Spacer side="bottom" size="md">
+                  <RestaurantInfoCard restaurant={item} />
+                </Spacer>
+              </Pressable>
             </>
           )}
           ListFooterComponent={<Spacer side="bottom" size="xxl" />}
