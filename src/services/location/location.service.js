@@ -20,5 +20,5 @@ export const locationTransform = (result) => {
   //get latitude and longitude values from "location" property in geometry object
   const { lat, lng } = geometry.location;
 
-  return { lat, lng };
+  return { lat, lng, viewport: geometry.viewport };
 };
