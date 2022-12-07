@@ -6,6 +6,7 @@ import { Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { RestaurantsNavigator } from "./restaurants.navigator";
+import { MapScreen } from "../../features/map/screens/map.screen";
 import { theme } from "../theme/index";
 
 const Tab = createBottomTabNavigator();
@@ -18,7 +19,6 @@ const TAB_ICON = {
 
 //if header is disabled, wrap these in a safe-area.component - needs import
 const SettingsScreen = () => <Text>Settings</Text>;
-const MapScreen = () => <Text>Map</Text>;
 
 export const AppNavigator = () => (
   <NavigationContainer>
