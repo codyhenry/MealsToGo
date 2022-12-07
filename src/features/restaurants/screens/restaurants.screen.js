@@ -9,6 +9,7 @@ import { RestaurantInfoCard } from "../components/restuarant-info-card.component
 import { LoadingComponent } from "../../../components/loading/activity-indicator.component";
 
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
+import { FavoritesContext } from "../../../services/favorites/favorites.context";
 
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
@@ -20,6 +21,9 @@ export const RestaurantsScreen = ({ navigation }) => {
   //const restaurantContext = useContext(RestaurantsContext);
   //destructure restaurantContext parameters passed in RestaurantContextProvider
   const { restaurants, isLoading, error } = useContext(RestaurantsContext);
+  const { favorites, addToFavorites, removeFromFavorites } =
+    useContext(FavoritesContext);
+
   return (
     <SafeArea>
       <Search />

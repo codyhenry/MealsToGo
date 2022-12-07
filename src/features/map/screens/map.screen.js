@@ -3,9 +3,11 @@ import MapView from "react-native-maps";
 
 import { LocationContext } from "../../../services/location/location.context";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
-import { Search } from "../components/search.component";
 
-export const MapScreen = () => {
+import { Search } from "../components/search.component";
+import { MapCallout } from "../components/map-callout.component";
+
+export const MapScreen = ({ navigation }) => {
   const { location } = useContext(LocationContext);
   const { restaurants = [] } = useContext(RestaurantsContext);
 
@@ -32,7 +34,24 @@ export const MapScreen = () => {
         style={{ height: "100%", width: "100%" }}
       >
         {restaurants.map((restaurant) => {
-          return null;
+          return (
+            <MapView.Marker
+              key={restaurant.name}
+              title={restaurant.name}
+              coordinate={{
+                latitude: restaurant.geometry.location.lat,
+                longitude: restaurant.geometry.location.lng,
+              }}
+            >
+              <MapView.Callout
+                onPress={() =>
+                  navigation.navigate("RestaurantDetail", { restaurant })
+                }
+              >
+                <MapCallout restaurant={restaurant} />
+              </MapView.Callout>
+            </MapView.Marker>
+          );
         })}
       </MapView>
     </>
