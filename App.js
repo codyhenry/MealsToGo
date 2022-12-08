@@ -1,10 +1,5 @@
 import { useState, useEffect } from "react";
 
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "./firebaseConfig";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components/native";
 import {
@@ -18,10 +13,7 @@ import { RestaurantsContextProvider } from "./src/services/restaurants/restauran
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { FavoritesContextProvider } from "./src/services/favorites/favorites.context";
 import { Navigation } from "./src/infrastructure/navigation/index";
-
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
-const db = getFirestore(firebaseApp);
+import { authentication } from "./firebase-config";
 
 export default function App() {
   const [oswaldLoaded] = useOswald({

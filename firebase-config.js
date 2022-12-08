@@ -1,3 +1,7 @@
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
 // Optionally import the services that you want to use
 // import {...} from "firebase/auth";
 // import {...} from "firebase/database";
@@ -14,6 +18,11 @@ const firebaseConfig = {
   messagingSenderId: "848012696618",
   appId: "1:848012696618:web:d8c3d2249d56572dbbf753",
 };
+
+const firebaseApp = initializeApp(firebaseConfig);
+
+export const authentication = getAuth(firebaseApp);
+//const db = getFirestore(firebaseApp);
 
 // For more information on how to access Firebase in your project,
 // see the Firebase documentation: https://firebase.google.com/docs/web/setup#access-firebase
