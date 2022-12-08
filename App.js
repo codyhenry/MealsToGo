@@ -21,7 +21,24 @@ import { LocationContextProvider } from "./src/services/location/location.contex
 import { FavoritesContextProvider } from "./src/services/favorites/favorites.context";
 import { Navigation } from "./src/infrastructure/navigation/index";
 
+const authentication = getAuth(firebaseApp);
+
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      signInWithEmailAndPassword(authentication, "<email>", "<password>")
+        .then((user) => {
+          console.log(user);
+          setIsAuthenticated(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 5000);
+  }, []);
+
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
   });
