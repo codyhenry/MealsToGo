@@ -49,6 +49,10 @@ export default function App() {
   if (!oswaldLoaded || !latoLoaded) {
     return null;
   }
+
+  if (!isAuthenticated) {
+    return null;
+  }
   return (
     <>
       <ThemeProvider theme={theme}>
