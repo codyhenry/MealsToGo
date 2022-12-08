@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
 
+import { firebaseApp } from "./firebase-config";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components/native";
 import {
@@ -13,7 +20,6 @@ import { RestaurantsContextProvider } from "./src/services/restaurants/restauran
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { FavoritesContextProvider } from "./src/services/favorites/favorites.context";
 import { Navigation } from "./src/infrastructure/navigation/index";
-import { authentication } from "./firebase-config";
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
