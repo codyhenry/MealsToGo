@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components/native";
 import { FlatList, Pressable } from "react-native";
 
@@ -7,6 +7,7 @@ import { SafeArea } from "../../../components/utility/safe-area.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { RestaurantInfoCard } from "../components/restuarant-info-card.component";
 import { LoadingComponent } from "../../../components/loading/activity-indicator.component";
+import { FavoritesBar } from "../../../components/favorites/favorites-bar.component";
 
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 import { FavoritesContext } from "../../../services/favorites/favorites.context";
@@ -21,12 +22,19 @@ export const RestaurantsScreen = ({ navigation }) => {
   //const restaurantContext = useContext(RestaurantsContext);
   //destructure restaurantContext parameters passed in RestaurantContextProvider
   const { restaurants, isLoading, error } = useContext(RestaurantsContext);
-  const { favorites, addToFavorites, removeFromFavorites } =
-    useContext(FavoritesContext);
+  const { favorites } = useContext(FavoritesContext);
+
+  const [isToggled, setIsToggled] = useState(false);
 
   return (
     <SafeArea>
-      <Search />
+      <Search
+        isFavoritesToggled={isToggled}
+        onFavoritesToggle={() => setIsToggled(!isToggled)}
+      />
+      {isToggled && (
+        <FavoritesBar favorites={favorites} onNavigate={navigation.navigate} />
+      )}
       {isLoading ? (
         <LoadingComponent />
       ) : (
