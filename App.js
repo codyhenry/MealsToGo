@@ -13,6 +13,7 @@ import { RestaurantsContextProvider } from "./src/services/restaurants/restauran
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { FavoritesContextProvider } from "./src/services/favorites/favorites.context";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
+
 import { Navigation } from "./src/infrastructure/navigation/index";
 
 export default function App() {

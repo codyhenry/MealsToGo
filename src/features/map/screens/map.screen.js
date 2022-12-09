@@ -8,6 +8,7 @@ import { Search } from "../components/search.component";
 import { MapCallout } from "../components/map-callout.component";
 
 export const MapScreen = ({ navigation }) => {
+
   const { location } = useContext(LocationContext);
   const { restaurants = [] } = useContext(RestaurantsContext);
 
