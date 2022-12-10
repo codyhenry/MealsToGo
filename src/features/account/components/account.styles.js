@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+
 import { Button, TextInput } from "react-native-paper";
 
 import { colors } from "../../../infrastructure/theme/colors";
@@ -11,6 +12,7 @@ export const AccountBackground = styled.ImageBackground.attrs({
   justify-content: flex-start;
 `;
 export const AccountCover = styled.ScrollView`
+
   background-color: rgba(255, 255, 255, 0.3);
   position: absolute;
   width: 100%;
