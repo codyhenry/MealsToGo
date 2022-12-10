@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
-import { Button } from "react-native-paper";
+
+import { Button, TextInput } from "react-native-paper";
 
 import { colors } from "../../../infrastructure/theme/colors";
 
@@ -8,9 +9,10 @@ export const AccountBackground = styled.ImageBackground.attrs({
 })`
   flex: 1;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 `;
-export const AccountCover = styled.View`
+export const AccountCover = styled.ScrollView`
+
   background-color: rgba(255, 255, 255, 0.3);
   position: absolute;
   width: 100%;
@@ -27,4 +29,28 @@ export const AuthButton = styled(Button).attrs({
   color: colors.brand.primary,
 })`
   padding: ${(props) => props.theme.spacing.sm};
+`;
+
+export const AuthInput = styled(TextInput).attrs((props) => ({
+  mode: "outlined",
+  activeOutlineColor: colors.brand.primary,
+  clearButtonMode: "while-editing",
+  autoCapitalize: "none",
+  right: <TextInput.Icon icon={props.icon} />,
+}))`
+  width: 300px;
+`;
+
+export const AuthInputFunction = styled(TextInput).attrs((props) => ({
+  mode: "outlined",
+  activeOutlineColor: colors.brand.primary,
+  clearButtonMode: "while-editing",
+  autoCapitalize: "none",
+  right: <TextInput.Icon icon={props.icon} onPress={props.function} />,
+}))`
+  width: 300px;
+`;
+
+export const Title = styled.Text`
+  font-size: ${(props) => props.theme.fontSizes.h4};
 `;

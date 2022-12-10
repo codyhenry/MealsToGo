@@ -1,5 +1,11 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export const loginRequest = (email, password) => {
-  signInWithEmailAndPassword(authentication, "<email>", "<password>");
+  return new Promise((resolve, reject) => {
+    signInWithEmailAndPassword(getAuth(), email, password)
+      .then((response) => {
+        resolve(response);
+      })
+      .catch(reject);
+  });
 };
