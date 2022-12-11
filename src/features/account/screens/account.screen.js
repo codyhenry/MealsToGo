@@ -4,15 +4,15 @@ import {
   AccountContainer,
   AuthButton,
   Title,
+  StyledLottieView,
 } from "../components/account.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
 
 export const AccountScreen = ({ navigation }) => {
   return (
-    <AccountBackground>
+    <AccountBackground location="center">
       <AccountCover />
-      <Spacer size="xxl" />
-      <Spacer size="xxl" />
+      <StyledLottieView />
       <Title>Meals To Go</Title>
       <AccountContainer>
         <AuthButton

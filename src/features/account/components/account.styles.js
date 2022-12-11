@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 
 import { Button, TextInput, ActivityIndicator } from "react-native-paper";
+import LottieView from "lottie-react-native";
 
 import { colors } from "../../../infrastructure/theme/colors";
 
@@ -9,7 +10,7 @@ export const AccountBackground = styled.ImageBackground.attrs({
 })`
   flex: 1;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: ${(props) => props.location};
 `;
 export const AccountCover = styled.ScrollView`
   background-color: rgba(255, 255, 255, 0.3);
@@ -58,3 +59,16 @@ export const LoadingIndicator = styled(ActivityIndicator).attrs({
   animating: true,
   color: colors.brand.primary,
 })``;
+
+export const StyledLottieView = styled(LottieView).attrs({
+  key: "animation",
+  autoPlay: true,
+  loop: false,
+  resizeMode: "cover",
+  source: require("../../../../assets/watermelon.json"),
+})`
+  width: 100%;
+  height: 60%;
+  position: absolute;
+  top: 25px;
+`;

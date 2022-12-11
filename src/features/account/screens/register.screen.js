@@ -23,7 +23,7 @@ export const RegisterScreen = ({ navigation }) => {
   const { onRegister, error, isLoading } = useContext(AuthenticationContext);
 
   return (
-    <AccountBackground>
+    <AccountBackground location="flex-start">
       <AccountCover />
       <Spacer size="xxl" />
       <Spacer size="xxl" />
