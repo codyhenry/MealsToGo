@@ -4,13 +4,13 @@ import { AccountScreen } from "../../features/account/screens/account.screen";
 import { LoginScreen } from "../../features/account/screens/login.screen";
 import { RegisterScreen } from "../../features/account/screens/register.screen";
 
-import { View, Text } from "react-native";
 const AccountStack = createNativeStackNavigator();
 
 export const AccountNavigator = () => (
   <AccountStack.Navigator
     screenOptions={{
       headerShown: false,
+      animation: "fade",
     }}
   >
     <AccountStack.Screen name="Main" component={AccountScreen} />

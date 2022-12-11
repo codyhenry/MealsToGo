@@ -8,6 +8,7 @@ import {
   AuthInput,
   AuthInputFunction,
   Title,
+  LoadingIndicator,
 } from "../components/account.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { CustomText } from "../../../components/typography/text.component";
@@ -18,7 +19,7 @@ export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
-  const { onLogin, error } = useContext(AuthenticationContext);
+  const { onLogin, error, isLoading } = useContext(AuthenticationContext);
 
   return (
     <AccountBackground>
@@ -49,14 +50,18 @@ export const LoginScreen = ({ navigation }) => {
         />
         <Spacer />
         {error != "" && <CustomText variant="error">{error}</CustomText>}
-        <AuthButton
-          icon="lock-open-outline"
-          mode="contained"
-          onPress={() => onLogin(email, password)}
-          disabled={email == "" || password == ""}
-        >
-          Login
-        </AuthButton>
+        {isLoading ? (
+          <LoadingIndicator />
+        ) : (
+          <AuthButton
+            icon="lock-open-outline"
+            mode="contained"
+            onPress={() => onLogin(email, password)}
+            disabled={email == "" || password == ""}
+          >
+            Login
+          </AuthButton>
+        )}
       </AccountContainer>
       <Spacer size="sm" />
       <AuthButton mode="contained" onPress={() => navigation.goBack()}>
