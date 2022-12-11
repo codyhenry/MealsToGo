@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Text } from "react-native";
+
+import { Text, Button } from "react-native";
+import { SafeArea } from "../../components/utility/safe-area.component";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 import { Ionicons } from "@expo/vector-icons";
 
@@ -17,7 +20,15 @@ const TAB_ICON = {
 };
 
 //if header is disabled, wrap these in a safe-area.component - needs import
-const SettingsScreen = () => <Text>Settings</Text>;
+const SettingsScreen = () => {
+  const { onLogout } = useContext(AuthenticationContext);
+  return (
+    <SafeArea>
+      <Text>Settings</Text>
+      <Button title="logout" onPress={() => onLogout()} />
+    </SafeArea>
+  );
+};
 
 export const AppNavigator = () => (
   <Tab.Navigator

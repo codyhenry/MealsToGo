@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-import { Button, TextInput } from "react-native-paper";
+import { Button, TextInput, ActivityIndicator } from "react-native-paper";
 
 import { colors } from "../../../infrastructure/theme/colors";
 
@@ -12,7 +12,6 @@ export const AccountBackground = styled.ImageBackground.attrs({
   justify-content: flex-start;
 `;
 export const AccountCover = styled.ScrollView`
-
   background-color: rgba(255, 255, 255, 0.3);
   position: absolute;
   width: 100%;
@@ -54,3 +53,8 @@ export const AuthInputFunction = styled(TextInput).attrs((props) => ({
 export const Title = styled.Text`
   font-size: ${(props) => props.theme.fontSizes.h4};
 `;
+
+export const LoadingIndicator = styled(ActivityIndicator).attrs({
+  animating: true,
+  color: colors.brand.primary,
+})``;
