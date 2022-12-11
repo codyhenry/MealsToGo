@@ -14,6 +14,7 @@ export const AuthenticationContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
+  //TODO: fix unsubscription call
   useEffect(() => {
     const authUnsubscribe = checkUserAuth((checkUser) => {
       if (checkUser) {
@@ -35,6 +36,8 @@ export const AuthenticationContextProvider = ({ children }) => {
         if (err.includes("invalid-email")) {
           err = "Enter a valid email address";
         } else if (err.includes("user-not-found")) {
+          err = "Incorrect Email or Password";
+        } else if (err.includes("wrong-password")) {
           err = "Incorrect Email or Password";
         }
         setIsLoading(false);

@@ -11,7 +11,7 @@ export const loginRequest = (email, password) => {
   return new Promise((resolve, reject) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((response) => {
-        resolve(response);
+        resolve(response.user);
       })
       .catch(reject);
   });
@@ -21,7 +21,7 @@ export const registerRequest = (email, password) => {
   return new Promise((resolve, reject) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((response) => {
-        resolve(response);
+        resolve(response.user);
       })
       .catch(reject);
   });
