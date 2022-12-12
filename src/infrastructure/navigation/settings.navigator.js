@@ -10,12 +10,19 @@ export const SettingsNavigator = ({ route, navigation }) => {
   return (
     <SettingsStack.Navigator
       screenOptions={{
-        headerShown: true,
-        presentation: "modal",
+        presentation: "card",
       }}
     >
-      <SettingsStack.Screen name="Settings" component={SettingsScreen} />
-      <SettingsStack.Screen name="Favorites" component={() => null} />
+      <SettingsStack.Screen
+        name="SettingsScreen"
+        component={SettingsScreen}
+        options={{ headerShown: false }}
+      />
+      <SettingsStack.Screen
+        name="Favorites"
+        component={FavoritesScreen}
+        options={{ headerBackTitle: "Settings" }}
+      />
     </SettingsStack.Navigator>
   );
 };
