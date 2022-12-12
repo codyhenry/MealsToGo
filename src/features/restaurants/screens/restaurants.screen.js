@@ -3,6 +3,7 @@ import { Pressable } from "react-native";
 
 import { Search } from "../components/search.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
+import { FadeInView } from "../../../components/animations/fade.animation";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { RestaurantInfoCard } from "../components/restuarant-info-card.component";
 import { LoadingComponent } from "../../../components/loading/activity-indicator.component";
@@ -39,12 +40,16 @@ export const RestaurantsScreen = ({ navigation }) => {
             <>
               <Pressable
                 onPress={() =>
-                  navigation.navigate("RestaurantDetail", { restaurant: item })
+                  navigation.navigate("RestaurantDetail", {
+                    restaurant: item,
+                  })
                 }
                 style={({ pressed }) => [{ opacity: pressed ? 0.5 : 1 }]}
               >
                 <Spacer side="bottom" size="md">
-                  <RestaurantInfoCard restaurant={item} />
+                  <FadeInView>
+                    <RestaurantInfoCard restaurant={item} />
+                  </FadeInView>
                 </Spacer>
               </Pressable>
             </>
